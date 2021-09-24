@@ -1,8 +1,4 @@
-import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-
-interface MyPluginSettings {
-	mySetting: string;
-}
+const { App, Modal, Notice, Plugin, PluginSettingTab, Setting } = require((  'obsidian';
 
 const DEFAULT_SETTINGS: MyPluginSettings = {
 	mySetting: 'default'
@@ -28,16 +24,6 @@ export default class MyPlugin extends Plugin {
 			// callback: () => {
 			// 	console.log('Simple Callback');
 			// },
-			checkCallback: (checking: boolean) => {
-				let leaf = this.app.workspace.activeLeaf;
-				if (leaf) {
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
-					return true;
-				}
-				return false;
-			}
 		});
 
 		this.addSettingTab(new SampleSettingTab(this.app, this));
@@ -85,12 +71,12 @@ class SampleModal extends Modal {
 class SampleSettingTab extends PluginSettingTab {
 	plugin: MyPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app, plugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
 
-	display(): void {
+	display() {
 		let {containerEl} = this;
 
 		containerEl.empty();
